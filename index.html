@@ -1,0 +1,110 @@
+<html>
+  <!-- This code was written from scratch by me (unless otherwise indicated). To use any of this code, please request permission from me at chromeoverload@gmail.com. DO NOT USE ANY OF THIS CODE WITHOUT PERMISSION.-->
+  <head>
+    <title>HOTF Algorithm</title>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/jpeg" href="https://pbs.twimg.com/profile_images/577893108433604608/59zZcnK3.jpeg">
+    <link href='https://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
+  </head>
+  <body>
+      <h1>HOTF Algorithm Simulator</h1>
+      <h2>Round <span id="round"></span></h2>
+      <h2>This Round's Event:</h2>
+       <p id="event"></p>
+      
+      <h3>Country 1:</h3>
+      <p class="stat">Authority: <span id="auth1"></span> &nbsp; &nbsp; <button type="button"onclick="auth1--">Spend Authority</button></p>
+      <p class="stat">Goods: <span id="good1"></span> &nbsp; &nbsp; <button type="button"onclick="good1--">Spend Goods</button></p>
+      <p class="stat">Ideas: <span id="idea1"></span> &nbsp; &nbsp; <button type="button"onclick="idea1--">Spend Ideas</button></p>
+      <p class="stat">Services: <span id="serv1"></span> &nbsp; &nbsp; <button type="button"onclick="serv1--">Spend Services</button></p>
+      <p class="stat">Leisure: <span id="leis1"></span> &nbsp; &nbsp; <button type="button"onclick="leis1--">Spend Leisure</button></p>
+      
+      <h3>Country 2:</h3>
+      <p class="stat">Authority: <span id="auth2"></span></p>
+      <p class="stat">Goods: <span id="good2"></span></p>
+      <p class="stat">Ideas: <span id="idea2"></span></p>
+      <p class="stat">Services: <span id="serv2"></span></p>
+      <p class="stat">Leisure: <span id="leis2"></span></p>
+      
+      <button type="button"onclick="turn()">Finish Round</button>
+      
+      
+      <script>
+      var auth1 = Math.floor((Math.random() * 5) + 1);
+      var good1 = Math.floor((Math.random() * 5) + 1);
+      var idea1 = Math.floor((Math.random() * 5) + 1);
+      var serv1 = Math.floor((Math.random() * 5) + 1);
+      var leis1 = Math.floor((Math.random() * 5) + 1);
+      
+      var auth2 = Math.floor((Math.random() * 5) + 1);
+      var good2 = Math.floor((Math.random() * 5) + 1);
+      var idea2 = Math.floor((Math.random() * 5) + 1);
+      var serv2 = Math.floor((Math.random() * 5) + 1);
+      var leis2 = Math.floor((Math.random() * 5) + 1);
+      var round = 1;
+      
+      var country = 0;
+      var countries = ["Country 1","Country 2"];
+      var action = 0;
+      var actions = ["loses","must spend","gains"];
+      var amount = 0;
+      var type = 0;
+      var types = ["authority","goods","ideas","services","leisure"];
+      var reception = 0;
+      var event = "";
+      
+      function growth(item)
+      {
+        var d10 = Math.floor((Math.random() * 10) + 1);
+        if (d10 <= item && item < 10)
+        {
+          item++;
+        }
+        return item;
+      }
+      
+          function turn()
+          {
+            auth1 = growth(auth1);
+            good1 = growth(good1);
+            idea1 = growth(idea1);
+            serv1 = growth(serv1);
+            leis1 = growth(leis1);
+            document.querySelector('#auth1').innerHTML = auth1;
+            document.querySelector('#good1').innerHTML = good1;
+            document.querySelector('#idea1').innerHTML = idea1;
+            document.querySelector('#serv1').innerHTML = serv1;
+            document.querySelector('#leis1').innerHTML = leis1;
+            
+            auth2 = growth(auth2);
+            good2 = growth(good2);
+            idea2 = growth(idea2);
+            serv2 = growth(serv2);
+            leis2 = growth(leis2);
+            document.querySelector('#auth2').innerHTML = auth2;
+            document.querySelector('#good2').innerHTML = good2;
+            document.querySelector('#idea2').innerHTML = idea2;
+            document.querySelector('#serv2').innerHTML = serv2;
+            document.querySelector('#leis2').innerHTML = leis2;
+            
+            document.querySelector('#round').innerHTML = round;
+            round++;
+            
+            //RANDOM EVENT GENERATION
+            
+            country = Math.floor(Math.random() * 2);
+            action = Math.floor(Math.random() * 3);
+            amount = Math.floor((Math.random() * 5) + 1);
+            type = Math.floor(Math.random() * 5);
+            var reception = Math.floor(Math.random() * 4);
+            
+            event = countries[country] + " " + actions[action] + " " + amount + " " + types[type] + " in order to gain " + (amount + reception) + " points.";
+            document.querySelector('#event').innerHTML = event;
+            
+            //setTimeout(turn,3000);
+          }
+          //turn();
+      </script>
+    
+  </body>
+</html>
