@@ -1,7 +1,7 @@
 <html>
   <!-- This code was written from scratch by me (unless otherwise indicated). To use any of this code, please request permission from me at chromeoverload@gmail.com. DO NOT USE ANY OF THIS CODE WITHOUT PERMISSION.-->
   <head>
-    <title>HOTF Algorithm Simulator</title>
+    <title>HOTF Algorithm</title>
     <meta charset="utf-8" />
     <link rel="icon" type="image/jpeg" href="https://pbs.twimg.com/profile_images/577893108433604608/59zZcnK3.jpeg">
     <link href='https://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
@@ -9,17 +9,17 @@
   <body>
       <h1>HOTF Algorithm Simulator</h1>
       <h2>Round <span id="round"></span></h2>
-      <h2>This Round's Event:</h2>
-       <p id="event"></p>
       
-      <h3>Country 1:</h3>
+      <h3 class = "subhead">Country 1</h3>
+      <p>Current Goal: <span id="goal1"></span></p>
       <p class="stat">Authority: <span id="auth1"></span> &nbsp; &nbsp; <button type="button"onclick="auth1--">Spend Authority</button></p>
       <p class="stat">Goods: <span id="good1"></span> &nbsp; &nbsp; <button type="button"onclick="good1--">Spend Goods</button></p>
       <p class="stat">Ideas: <span id="idea1"></span> &nbsp; &nbsp; <button type="button"onclick="idea1--">Spend Ideas</button></p>
       <p class="stat">Services: <span id="serv1"></span> &nbsp; &nbsp; <button type="button"onclick="serv1--">Spend Services</button></p>
       <p class="stat">Leisure: <span id="leis1"></span> &nbsp; &nbsp; <button type="button"onclick="leis1--">Spend Leisure</button></p>
       
-      <h3>Country 2:</h3>
+      <h3 class = "subhead">Country 2</h3>
+      <p>Current Goal: <span id="goal2"></span></p>
       <p class="stat">Authority: <span id="auth2"></span></p>
       <p class="stat">Goods: <span id="good2"></span></p>
       <p class="stat">Ideas: <span id="idea2"></span></p>
@@ -28,7 +28,9 @@
       
       <button type="button"onclick="turn()">Finish Round</button>
       
-      
+      <style>
+        .subhead{font-weight:bold; text-decoration:underline;}
+      </style>
       <script>
       var auth1 = Math.floor((Math.random() * 5) + 1);
       var good1 = Math.floor((Math.random() * 5) + 1);
@@ -98,8 +100,10 @@
             type = Math.floor(Math.random() * 5);
             var reception = Math.floor(Math.random() * 4);
             
-            event = countries[country] + " " + actions[action] + " " + amount + " " + types[type] + " in order to gain " + (amount + reception) + " points.";
-            document.querySelector('#event').innerHTML = event;
+            event1 = "Country 1 " + actions[action] + " " + amount + " " + types[type] + " in order to gain " + (amount + reception) + " points.";
+            event2 = "Country 2 " + actions[action] + " " + amount + " " + types[type] + " in order to gain " + (amount + reception) + " points.";
+            document.querySelector('#goal1').innerHTML = event1;
+            document.querySelector('#goal2').innerHTML = event2;
             
             //setTimeout(turn,3000);
           }
